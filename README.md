@@ -152,7 +152,7 @@ GraphCast 是一种基于机器学习和图神经网络 (GNN) 的天气预报系
 
 1. 这里的数据由 Google Cloud Bucket ([https://console.cloud.google.com/storage/browser/dm_graphcast](https://console.cloud.google.com/storage/browser/dm_graphcast) 提供。模型权重、标准化统计和示例输入可在Google Cloud Bucket上找到。完整的模型训练需要下载ERA5数据集，该数据集可从ECMWF获得。
 2. 可以自由选择想要测试的数据。注意，不同的数据需要和模型参数匹配。这里提供本项目测试所用数据做参考：
-    ![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/064b44dc3d474b6aafba43171c5eb3b1.png#pic_center)
+    ![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/a8c1569ee45a430080fb77c28c8eda69.png#pic_center)
 
     
 
