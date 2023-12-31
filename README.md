@@ -1,12 +1,15 @@
 # Run GraphCast (in AutoDL or other new environments) with one click  一键运行 GraphCast （在 AutoDL 或者其他新的环境）
 -------------------------------------------------------------------
+
+[README.md]()
+
+[中文说明]()
+
 [original_README.md](https://github.com/sfsun67/GraphCast-from-Ground-Zero/blob/main/original_README.md)
 
-README_中文.md
+[original_README_中文](https://github.com/sfsun67/GraphCast-from-Ground-Zero/blob/main/original_README_中文.md)
 
-Run GraphCast (in AutoDL or other new environments) with one click.md
 
-一键运行 GraphCast （在 AutoDL 或者其他新的环境）.md
 -------------------------------------------------------------------
 本项目来自于 Google DeepMind 的工作 DOI: 10.1126/science.adi2336。原始版权信息如下：
 ### 许可和归属
