@@ -155,7 +155,8 @@ In addition to weather forecasting, GraphCast can open up new directions for oth
 1. The data here is provided by Google Cloud Bucket ([https://console.cloud.google.com/storage/browser/dm_graphcast](https://console.cloud.google.com/storage/browser/dm_graphcast)). Model weights, normalization statistics, and example inputs can be found on the Google Cloud Bucket. To complete the model training, download the ERA5 dataset from ECMWF.
 2. You are free to choose the data you want to test. Note that different data needs to match the model parameters. Here, we provide reference data used in this project:
 
-   ![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/064b44dc3d474b6aafba43171c5eb3b1.png#pic_center)
+   ![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/a8c1569ee45a430080fb77c28c8eda69.png#pic_center)
+
 
 ### 4. Dependency Installation
 
