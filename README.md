@@ -1,38 +1,9 @@
-# GraphCast With AutoDL (Or other original environments)
+# Run GraphCast (in AutoDL or other new environments) with one click  一键运行 GraphCast （在 AutoDL 或者其他新的环境）
 -------------------------------------------------------------------
-
-**AutoDL is an AI computing cloud of China https://www.autodl.com**
-
-*Specification details*
-
-*镜像Mirror JAX  0.3.10
-Python  3.8(ubuntu18.04)
-Cuda  11.1
-GPU
-TITAN Xp(12GB) * 1
-CPU
-7 vCPU Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz
-内存Memory 16GB*
-
-You would have a file structure similar to this.
-你应该有类似的文件结构：
-```
-.
-├── code
-│   ├── graphcast-main
-├── data
-│   ├── dataset
-│       ├──dataset-source-era5_date-2022-01-01_res-1.0_levels-13_steps-01.nc
-│       ├──dataset-source-era5_date-2022-01-01_res-1.0_levels-13_steps-04.nc
-│       ├──dataset-source-era5_date-2022-01-01_res-1.0_levels-13_steps-12.nc
-│       ├──...
-│   ├── params
-│       ├──params-GraphCast - ERA5 1979-2017 - resolution 0.25 - pressure levels 37 - mesh 2to6 - precipitation input and output.npz
-│       ├──params-GraphCast_small - ERA5 1979-2015 - resolution 1.0 - pressure levels 13 - mesh 2to5 - precipitation input and output.npz
-│       ├──...
-│   ├── ...
-└────── 
-```
+README.md
+README_中文.md
+Run GraphCast (in AutoDL or other new environments) with one click.md
+一键运行 GraphCast （在 AutoDL 或者其他新的环境）.md
 -------------------------------------------------------------------
 
 # GraphCast: Learning skillful medium-range global weather forecasting
