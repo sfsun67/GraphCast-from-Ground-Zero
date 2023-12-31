@@ -58,10 +58,6 @@ If you use this work, consider citing our [paper](https://arxiv.org/abs/2212.127
 Related Article:
 	[从零开始运行 GraphCast （AutoDL 或者其他新的环境）【 jupyter 示例 】](http://t.csdnimg.cn/3YqvT)
 
-Here is the translation in English while preserving the original format:
-
----
-
 This article provides a hands-on tutorial for running the ****GraphCast****.
 
 Simply click the Jupyter button "Run All," and the code will automatically execute the model's environment installation and operation, perform automatic inference, and demonstrate how to train the model (refer to "III. Running GraphCast from a New Environment" - "5. Run GraphCast"). Depending on the machine, executing all the code may take several minutes to a dozen minutes.
@@ -107,65 +103,64 @@ In addition to weather forecasting, GraphCast can open up new directions for oth
 
     
 6. For model operation, refer to "III. Running GraphCast from a New Environment" - "5. Run GraphCast." Click the Jupyter button "Run All," and the code will automatically execute the model's environment installation and operation. Depending on the machine, executing all the code may take several minutes to a dozen minutes.
+## 3. Run GraphCast in a New Environment
 
-## 三、从新环境运行 GraphCast
+### 1. Configure the Machine
 
-### 1. 配置机器
+1. Power on your machine. Here, we demonstrate using AutoDL's RTX 2080 Ti 11GB. The machine comes pre-installed with the deep learning framework: JAX / 0.3.10 / 3.8 (ubuntu18.04) / Cuda 11.1.
 
-1. 打开你的机器。这里使用 AutoDL 的RTX 2080 Ti 11GB 进行示范。机器预装深度学习框架： JAX / 0.3.10 / 3.8 (ubuntu18.04) / Cuda 11.1。
-    
-    ![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/70244410e1354069866bea5d68fafaed.png#pic_center)
+   ![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/70244410e1354069866bea5d68fafaed.png#pic_center)
 
-2. 如果你使用自己的机器。那么确认预装 JAX / 0.3.10 / 3.8 (ubuntu18.04) / Cuda 11.1 。GraphCast未在其他版本上测试。
-3. 如果你使用AutoDL。打开你熟悉的IDE，推荐 VsCode 或者 PyCharm，也直接使用 AutoDL 提供的JupyterLab。这里使用 vscode ，远程连接服务器。详见**AutoDL帮助文档/VSCode远程开发**[https://www.autodl.com/docs/vscode/](https://www.autodl.com/docs/vscode/)。
-    
-    ![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/a5b31c952a4c4bbcaa04e6c0d8eb8a8d.png#pic_center)
+2. If you are using your own machine, ensure that JAX / 0.3.10 / 3.8 (ubuntu18.04) / Cuda 11.1 is pre-installed. GraphCast has not been tested on other versions.
+3. If you are using AutoDL, open your preferred IDE, such as VsCode or PyCharm, or directly use AutoDL's provided JupyterLab. Here, we use VsCode and connect remotely to the server. Refer to **AutoDL Help Documentation/VSCode Remote Development** [https://www.autodl.com/docs/vscode/](https://www.autodl.com/docs/vscode/).
 
-4. 配置 VsCode。
-    1. 在 VsCode 的拓展中安装 python，同时 VsCode 会自动安装 Pylance。
-        
- 		![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/52f4e860522a4d03945b961c8921a456.png#pic_center)
-    2. 在 VsCode 的拓展中安装 jupyter，同时 VsCode 会自动安装 Jupyter Cell Tags、Jupyter Cell Tags 和 Jupyter Cell Tags。
-        ![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/ed654008386f416a864ffa24e52627ee.png#pic_center)
+   ![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/a5b31c952a4c4bbcaa04e6c0d8eb8a8d.png#pic_center)
 
-    3. 此时，服务器中的拓展如下。
-        ![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/931ac2318c9a499e8cf263383906d3e1.png#pic_center)
+4. Configure VsCode.
+    1. Install Python in VsCode's extensions, and VsCode will automatically install Pylance.
 
-5. 打开服务器根目录。
-    
-    ![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/11fef058946949a18956c456c2623034.png#pic_center)
+      ![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/52f4e860522a4d03945b961c8921a456.png#pic_center)
 
-### 2. 拉取代码到机器
+    2. Install Jupyter in VsCode's extensions, and VsCode will automatically install Jupyter Cell Tags, Jupyter Cell Tags, and Jupyter Cell Tags.
 
-1. 在根目录下创建两个文件夹，分别为 code 和 data 。
-    
-![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/d0aeee4d759041e7b41df22ee6174488.png#pic_center)
+      ![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/ed654008386f416a864ffa24e52627ee.png#pic_center)
 
-    
-2. 在终端中进入目录 ：cd /root/code
-    ![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/deb2876df75f40369098253758fc8754.png#pic_center)
+    3. At this point, the extensions on the server should look like this.
 
-    
-3. 在终端中克隆代码 ：git clone [https://github.com/sfsun67/GraphCast-from-Ground-Zero](https://github.com/sfsun67/GraphCast-from-Ground-Zero)
-    
-    ![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/2ac02879fa3b40f7ac42c66bde01692c.png#pic_center)
+      ![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/931ac2318c9a499e8cf263383906d3e1.png#pic_center)
 
+5. Open the server's root directory.
 
-### 3. 下载数据
+   ![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/11fef058946949a18956c456c2623034.png#pic_center)
 
-1. 这里的数据由 Google Cloud Bucket ([https://console.cloud.google.com/storage/browser/dm_graphcast](https://console.cloud.google.com/storage/browser/dm_graphcast) 提供。模型权重、标准化统计和示例输入可在Google Cloud Bucket上找到。完整的模型训练需要下载ERA5数据集，该数据集可从ECMWF获得。
-2. 可以自由选择想要测试的数据。注意，不同的数据需要和模型参数匹配。这里提供本项目测试所用数据做参考：
-    ![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/064b44dc3d474b6aafba43171c5eb3b1.png#pic_center)
+### 2. Clone the Code to the Machine
 
-    
+1. Create two folders in the root directory: code and data.
 
-### 4. 依赖安装
+   ![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/d0aeee4d759041e7b41df22ee6174488.png#pic_center)
 
-1. 点击中文版 Jupyter 示例，按照说明安装 Python3.10 。 
-    ![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/1e6dd666a7c644b880b19248fe0a0a46.png#pic_center)
+2. In the terminal, navigate to the directory: `cd /root/code`
 
-    
-2. 终端输出如下：
+   ![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/deb2876df75f40369098253758fc8754.png#pic_center)
+
+3. Clone the code in the terminal: `git clone [https://github.com/sfsun67/GraphCast-from-Ground-Zero](https://github.com/sfsun67/GraphCast-from-Ground-Zero)`
+
+   ![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/2ac02879fa3b40f7ac42c66bde01692c.png#pic_center)
+
+### 3. Download Data
+
+1. The data here is provided by Google Cloud Bucket ([https://console.cloud.google.com/storage/browser/dm_graphcast](https://console.cloud.google.com/storage/browser/dm_graphcast)). Model weights, normalization statistics, and example inputs can be found on the Google Cloud Bucket. To complete the model training, download the ERA5 dataset from ECMWF.
+2. You are free to choose the data you want to test. Note that different data needs to match the model parameters. Here, we provide reference data used in this project:
+
+   ![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/064b44dc3d474b6aafba43171c5eb3b1.png#pic_center)
+
+### 4. Dependency Installation
+
+1. Click on the Chinese version Jupyter example and install Python3.10 following the instructions.
+
+   ![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/1e6dd666a7c644b880b19248fe0a0a46.png#pic_center)
+
+2. The terminal output will be as follows:
 
 ```bash
 	   root@autodl-container-48ce11bc52-8d41bf84:~/code# conda update -n base -c defaults conda
