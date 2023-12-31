@@ -1,9 +1,9 @@
-# Run GraphCast (in AutoDL or other new environments) with one click  一键运行 GraphCast （在 AutoDL 或者其他新的环境）
+# Run GraphCast (in AutoDL or other new environments) with one click 
 -------------------------------------------------------------------
 
-[README.md]()
+[README_English.md](https://github.com/sfsun67/GraphCast-from-Ground-Zero/blob/main/README_English.md)
 
-[中文说明]()
+[中文说明](https://github.com/sfsun67/GraphCast-from-Ground-Zero/blob/main/README.md)
 
 [original_README.md](https://github.com/sfsun67/GraphCast-from-Ground-Zero/blob/main/original_README.md)
 
@@ -11,34 +11,37 @@
 
 
 -------------------------------------------------------------------
-本项目来自于 Google DeepMind 的工作 DOI: 10.1126/science.adi2336。原始版权信息如下：
-### 许可和归属
+This project is from the work of Google DeepMind DOI: 10.1126/science.adi2336. original copyright information below:
 
-Colab笔记本和相关代码的许可为Apache License, Version 2.0。
-您可以在以下网址获取许可的副本：https://www.apache.org/licenses/LICENSE-2.0。
+### License and attribution
 
-模型权重可根据Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)的条款供使用。
-您可以在以下
+The Colab notebook and the associated code are licensed under the Apache
+License, Version 2.0. You may obtain a copy of the License at:
+https://www.apache.org/licenses/LICENSE-2.0.
 
-网址获取许可的副本：https://creativecommons.org/licenses/by-nc-sa/4.0/。
+The model weights are made available for use under the terms of the Creative
+Commons Attribution-NonCommercial-ShareAlike 4.0 International
+(CC BY-NC-SA 4.0). You may obtain a copy of the License at:
+https://creativecommons.org/licenses/by-nc-sa/4.0/.
 
-权重是在ECMWF的ERA5和HRES数据上训练的。Colab中包含了一些ERA5和HRES数据的示例，可以用作模型的输入。
-ECMWF数据产品受以下条款约束：
+The weights were trained on ECMWF's ERA5 and HRES data. The colab includes a few
+examples of ERA5 and HRES data that can be used as inputs to the models.
+ECMWF data product are subject to the following terms:
 
-1. 版权声明：版权 "© 2023 European Centre for Medium-Range Weather Forecasts (ECMWF)"。
-2. 来源 www.ecmwf.int
-3. 许可声明：ECMWF数据以Creative Commons Attribution 4.0 International (CC BY 4.0)的方式发布。 https://creativecommons.org/licenses/by/4.0/
-4. 免责声明：ECMWF对数据中的任何错误或遗漏、其可用性或由其使用而引起的任何损失或损害概不负责。
+1. Copyright statement: Copyright "© 2023 European Centre for Medium-Range Weather Forecasts (ECMWF)".
+2. Source www.ecmwf.int
+3. Licence Statement: ECMWF data is published under a Creative Commons Attribution 4.0 International (CC BY 4.0). https://creativecommons.org/licenses/by/4.0/
+4. Disclaimer: ECMWF does not accept any liability whatsoever for any error or omission in the data, their availability, or for any loss or damage arising from their use.
 
-### 免责声明
+### Disclaimer
 
-这不是官方支持的Google产品。
+This is not an officially supported Google product.
 
-版权所有 2023 DeepMind Technologies Limited。
+Copyright 2023 DeepMind Technologies Limited.
 
-### 引用
+### Citation
 
-如果您使用此工作，请考虑引用我们的[论文](https://arxiv.org/abs/2212.12794)：
+If you use this work, consider citing our [paper](https://arxiv.org/abs/2212.12794):
 
 ```latex
 @article{lam2022graphcast,
@@ -52,56 +55,58 @@ ECMWF数据产品受以下条款约束：
 ```
 -------------------------------------------------------------------
 
-相关文章：
+Related Article:
 	[从零开始运行 GraphCast （AutoDL 或者其他新的环境）【 jupyter 示例 】](http://t.csdnimg.cn/3YqvT)
 
-本文提供动手运行 ****GraphCast**** 的教程。
+Here is the translation in English while preserving the original format:
 
-只需点击 Jupyter 按钮 “Run All”，代码将自动执行模型的环境安装和运行，自动推理并演示如何训练模型（参考“三、从新环境运行 GraphCast”-“5. 运行GraphCast”）。依据机器不同，执行完毕所有代码可能需要几分钟到十几分钟。
+---
 
-翻译并调试好的官方 ****jupyter**** 示例如下：
+This article provides a hands-on tutorial for running the ****GraphCast****.
 
-****从零开始运行 GraphCast （AutoDL 或者其他新的环境）【 jupyter 示例 】****
+Simply click the Jupyter button "Run All," and the code will automatically execute the model's environment installation and operation, perform automatic inference, and demonstrate how to train the model (refer to "III. Running GraphCast from a New Environment" - "5. Run GraphCast"). Depending on the machine, executing all the code may take several minutes to a dozen minutes.
 
-所有文件都可以在 https://github.com/sfsun67/GraphCast-from-Ground-Zero 找到。
+The translated and debugged official ****Jupyter**** example is as follows:
 
-## 一、GraphCast 介绍
+****Running GraphCast from Scratch (AutoDL or other new environments) [Jupyter Example]****
 
-GraphCast 是一种基于机器学习和图神经网络 (GNN) 的天气预报系统。该系统已被包括欧洲中期天气预报中心（ECMWF） 在内的气象机构测试。这是一种先进的人工智能模型，能够以前所未有的准确度进行中期天气预报。GraphCast 最多可以提前 10 天预测天气状况，比行业黄金标准天气模拟系统 - 由欧洲中期天气预报中心 (ECMWF) 制作的高分辨率预报 (HRES) 更准确、更快。
+All files can be found at https://github.com/sfsun67/GraphCast-from-Ground-Zero.
 
-这种模型巧妙的使用递归的正则二十面体进行六次迭代，所产生的多面体替代原有的地球经纬度网络。在相同分辨率条件下，图模型节点数量从一百万（1, 038, 240）下降到 4 万（40, 962）。使得模型可以在 GNN 框架下学习大规模多特征的复杂数据。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/b1ea30dc17314198915e98681ba00499.png#pic_centers=20)
+## I. Introduction to GraphCast
 
-图1：模型结构
+GraphCast is a weather forecasting system based on machine learning and Graph Neural Networks (GNN). The system has been tested by meteorological agencies, including the European Centre for Medium-Range Weather Forecasts (ECMWF). It is an advanced artificial intelligence model capable of mid-term weather forecasting with unprecedented accuracy. GraphCast can forecast weather conditions up to 10 days in advance, more accurate and faster than the industry's gold standard weather simulation system - High-Resolution Forecast (HRES) produced by the ECMWF.
 
-除了天气预报之外，GraphCast 还可以为其他重要的地理时空预报问题开辟新的方向，包括气候和生态、能源、农业、人类和生物活动以及其他复杂的动力系统。在丰富的真实世界数据上训练的学习型模拟器，将在促进机器学习在物理科学中的作用方面发挥关键作用。
+This model ingeniously uses recursively regular icosahedra for six iterations, generating polyhedra that replace the original Earth latitude and longitude network. Under the same resolution conditions, the number of graph model nodes decreases from one million (1,038,240) to 40,000 (40,962). This allows the model to learn complex data with large-scale multi-features under the GNN framework.
+![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/b1ea30dc17314198915e98681ba00499.png#pic_centers=20)
 
-## 二、开箱即用的 GraphCast
+Figure 1: Model Structure
 
-1. 注册AdtoDL。
-    
+In addition to weather forecasting, GraphCast can open up new directions for other important geographical spatiotemporal forecasting problems, including climate and ecology, energy, agriculture, human and biological activities, and other complex dynamic systems. A learning simulator trained on rich real-world data will play a crucial role in advancing the role of machine learning in physical sciences.
+
+## II. Out-of-the-Box GraphCast
+
+1. Register at AdtoDL.
+
     [https://www.autodl.com/home](https://www.autodl.com/home)
+
+2. Enter the computing power market.
+   ![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/a381b209ee024b07b81fe2b15af79991.png#pic_center)
+
+3. Choose the graphics card you need. Here, the RTX3090 graphics card is tested. Click "1 Card for Rent" to enter the next interface.
     
-2. 进入算力市场。
-   ![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/a381b209ee024b07b81fe2b15af79991.png#pic_center)
+    ![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/798ce602c253467580097f371862f022.png#pic_center)
 
-
-
-3. 选择你需要的显卡。这里测试 RTX3090 显卡。点击“1卡可租”进入下一界面。
+4. Select the "Community Image" tab.
     
-    ![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/798ce602c253467580097f371862f022.png#pic_center)
+    ![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/4e68cb8435db4173982e614af0a46ec1.png#pic_center)
 
-4. 选择“社区镜像”选项卡。
+5. Enter "GraphCast," find this project, and create an environment.
     
-    ![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/4e68cb8435db4173982e614af0a46ec1.png#pic_center)
-
-5. 输入“GraphCast”，找到本项目，并创建环境。
-    
-    ![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/065bde980975458db8ad76490b13d853.png#pic_center)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/30ad183cb5e6433dbcaf9c7672d0b912.png#pic_center)
+    ![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/065bde980975458db8ad76490b13d853.png#pic_center)
+![Insert Image Description Here](https://img-blog.csdnimg.cn/direct/30ad183cb5e6433dbcaf9c7672d0b912.png#pic_center)
 
     
-6. 模型运行参考“三、从新环境运行 GraphCast”-“5. 运行GraphCast”。点击 Jupyter 按钮 “Run All”，代码将自动执行模型的环境安装和运行。依据机器不同，执行完毕所有代码可能需要几分钟到十几分钟。
+6. For model operation, refer to "III. Running GraphCast from a New Environment" - "5. Run GraphCast." Click the Jupyter button "Run All," and the code will automatically execute the model's environment installation and operation. Depending on the machine, executing all the code may take several minutes to a dozen minutes.
 
 ## 三、从新环境运行 GraphCast
 
