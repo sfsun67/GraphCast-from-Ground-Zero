@@ -1,9 +1,15 @@
-# Run GraphCast (in AutoDL or other new environments) with one click  一键运行 GraphCast （在 AutoDL 或者其他新的环境）
+
 -------------------------------------------------------------------
-README.md
-README_中文.md
-Run GraphCast (in AutoDL or other new environments) with one click.md
-一键运行 GraphCast （在 AutoDL 或者其他新的环境）.md
+
+[README_English.md](https://github.com/sfsun67/GraphCast-from-Ground-Zero/blob/main/README_English.md)
+
+[中文说明](https://github.com/sfsun67/GraphCast-from-Ground-Zero/blob/main/README.md)
+
+[original_README.md](https://github.com/sfsun67/GraphCast-from-Ground-Zero/blob/main/original_README.md)
+
+[original_README_中文](https://github.com/sfsun67/GraphCast-from-Ground-Zero/blob/main/original_README_中文.md)
+
+
 -------------------------------------------------------------------
 
 # GraphCast: Learning skillful medium-range global weather forecasting
