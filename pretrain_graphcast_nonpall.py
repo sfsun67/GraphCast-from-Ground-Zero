@@ -20,6 +20,7 @@ from model.graphcast_sequential import GraphCast
 from utils.params import get_graphcast_args
 from utils.tools import load_model, save_model
 import pickle
+from tqdm import tqdm
 # from utils.eval import graphcast_evaluate
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2'
@@ -51,14 +52,15 @@ def chunk_time(ds):
 
 def load_dataset():
     ds = []
-    '''for y in range(2007, 2017):
+    '''
+    for y in range(2007, 2017):
         data_name = os.path.join(data_dir, f'weather_round1_train_{y}')
         x = xr.open_zarr(data_name, consolidated=True)
         print(f'{data_name}, {x.time.values[0]} ~ {x.time.values[-1]}')
         ds.append(x)
     ds = xr.concat(ds, 'time')
-    ds = chunk_time(ds)'''
-
+    ds = chunk_time(ds)
+    '''
     with open(f"{data_path}", "rb") as f:
         ds = xr.load_dataset(f).compute()
 
@@ -139,13 +141,14 @@ def average_score(RMSE_list, key):
     return score/len(RMSE_list)
 
 
-def train_one_epoch(epoch, model, criterion, data_loader, graph, optimizer, predict_steps, weight, lat_weight,device="cuda:0"):
+def train_one_epoch(epoch, model, criterion, data_loader, graph, optimizer, predict_steps, weight, lat_weight, device="cuda:0"):
     # teacher_forcing_rate = 0.5
     loss_all = torch.tensor(0.).to(device)
     count = torch.tensor(0.).to(device)
     score_all = torch.tensor(0.).to(device)
-    model.train()
+    model.train()    # torch.nn.Module 的一个方法
 
+    # input_x is preparing a list of tensors to be used as input for a model, likely a graph-based model given the variable names. Each tensor represents a different aspect of the input data.
     input_x = [
         None,
         graph.mesh_data.x.half().cuda(non_blocking=True),
@@ -164,9 +167,12 @@ def train_one_epoch(epoch, model, criterion, data_loader, graph, optimizer, pred
     '''
     scaler = GradScaler()
     for step, batch in enumerate(data_loader):
+
+        # 从 batch 中取出 x 和 y
         x, y = [x.half().cuda(non_blocking=True) for x in batch]
         y = y[:, :predict_steps, ...]
         input_x[0] = x
+
         bs,ts,c,h,w = x.shape
         # print(bs)
 
@@ -418,7 +424,7 @@ def train(local_rank, args, ds, num_data , port):
     print("开始训练")
     for epoch in range(start_epoch, args.epochs):
         # train_sampler.set_epoch(epoch)  用于多线程的？ 在 OpenCasrKit 中没有
-        train_loss = train_one_epoch(epoch, model, criterion, train_loader, graph, optimizer, args.predict_steps, weight, lat_weight, device=gpu)
+        train_loss = train_one_epoch(epoch, model, criterion, train_loader, graph, optimizer, args.predict_steps, weight, lat_weight, device=gpu) # device=gpu
         # 删了
         lr_scheduler.step(epoch)
         # save_model(model, epoch + 1, optimizer=optimizer, lr_scheduler=lr_scheduler, min_loss=min_loss, path= SAVE_PATH / 'latest.pt')
@@ -450,7 +456,29 @@ if __name__=="__main__":
     # ds = load_dataset().x
     ds = load_dataset()
     # shape = ds.shape # batch x channel x lat x lon 
-    times = ds.time.values
+
+    # ---制作 fake data---
+    times = 10  # ds时间的倍数
+    ds_temp1 = ds.copy(deep=True)
+    ds_temp2 = ds.copy(deep=True)
+    ds_fake = xr.concat([ds_temp1, ds_temp2], dim="time")
+
+    if times > 2 :
+        with tqdm(total=times-2) as pbar:
+            for i in range(times-2):
+                ds_fake = xr.concat([ds_fake, ds_temp1], dim="time")
+                pbar.update(1)
+    
+    # Assuming ds is your original dataset
+    original_time = ds.coords['time']
+    new_time_length = len(ds_fake['time']) 
+
+    # Create new time coordinate
+    new_time = np.arange(start=original_time.values[0], stop=original_time.values[0] + np.timedelta64(new_time_length, 'h'), step=np.timedelta64(6, 'h'))
+    ds_fake = ds_fake.assign_coords(time=new_time)
+    # --------------------
+    times = ds_fake.time.values
+    # times = ds.time.values
 
     # 
     free_port = find_free_port()
@@ -474,7 +502,8 @@ if __name__=="__main__":
     # Get the local rank
     local_rank = 0
 
-    train(local_rank, args, ds, num_data, free_port)
+    # 如果不删除 /root/output/graphcast-torch 存储的权重，会意外跳出循环。
+    train(local_rank, args, ds_fake, num_data, free_port)
     # ----20240229----
 
 
